@@ -7,8 +7,11 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
 ## Scala Dependencies
 
-    "com.ubirch.notary" %% "json" % "0.2.1"
-    "com.ubirch.notary" %% "backend" % "0.2.1"
+    resolvers += Resolver.sonatypeRepo("releases")
+    libraryDependencies ++= Seq(
+      "com.ubirch.notary" %% "json" % "0.2.1"
+      "com.ubirch.notary" %% "backend" % "0.2.1"
+    )
 
 ## Links
 
