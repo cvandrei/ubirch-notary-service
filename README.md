@@ -1,7 +1,16 @@
-# bitcoinTxEval
+# ubirch Notary Service
 
-The goal of this project is to evaluate using Bitcoin technology for our purposes. For that reason there's [standalone 
-classes](./standalone.html) and a [REST API with spray](./rest-spray.html).
+## General Information
+
+This REST service allows us to notarize data using the Bitcoin Blockchain. The REST API is documented here: 
+[REST API with spray](./rest-spray.html).
+
+## Scala Dependencies
+
+    "com.ubirch.notary" %% "json" % "0.2.1"
+    "com.ubirch.notary" %% "backend" % "0.2.1"
+
+## Links
 
 A list of links that helped us with the OP_RETURN message:
 
