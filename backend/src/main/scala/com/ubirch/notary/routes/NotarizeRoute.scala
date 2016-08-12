@@ -5,6 +5,7 @@ import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.Boot
 import com.ubirch.notary.config.{AppConfig, AppConst}
 import com.ubirch.notary.directives.UriPathDirective
+import com.ubirch.notary.json.{NotarizeResponse, Notarize}
 import org.bitcoinj.core.{Address, Coin, InsufficientMoneyException, NetworkParameters, Transaction}
 import org.bitcoinj.script.ScriptBuilder
 import org.bitcoinj.wallet.SendRequest
@@ -135,10 +136,3 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
   }
 
 }
-
-case class Notarize(data: String,
-                    signature: Option[String] = None,
-                    publicKey: Option[String] = None
-                   )
-
-case class NotarizeResponse(hash: String)

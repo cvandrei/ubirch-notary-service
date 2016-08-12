@@ -4,6 +4,7 @@ import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.Boot
 import com.ubirch.notary.config.AppConst
 import com.ubirch.notary.directives.UriPathDirective
+import com.ubirch.notary.json.{WalletInfo, BitcoinWallet, BitcoinBalance, BitcoinAddress}
 import org.bitcoinj.core.Coin
 import org.bitcoinj.wallet.KeyChain.KeyPurpose
 import org.bitcoinj.wallet.Wallet
@@ -74,11 +75,3 @@ class WalletInfoRoute extends Directives with UriPathDirective with LazyLogging 
   }
 
 }
-
-case class WalletInfo(bitcoinWallet: BitcoinWallet)
-
-case class BitcoinWallet(network: String, balance: BitcoinBalance, address: BitcoinAddress)
-
-case class BitcoinBalance(BTC: Long, mBTC: Long, µBTC: Long)
-
-case class BitcoinAddress(receive: String, change: String, authenticate: String, refund: String)

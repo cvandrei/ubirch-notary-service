@@ -4,6 +4,7 @@ import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.Boot
 import com.ubirch.notary.config.AppConst
 import com.ubirch.notary.directives.UriPathDirective
+import com.ubirch.notary.json.{BitcoinTx, BitcoinTransactions}
 import spray.routing.{Directives, Route}
 
 import scala.collection.JavaConverters._
@@ -66,7 +67,3 @@ class TransactionRoute extends Directives with UriPathDirective with LazyLogging
   }
 
 }
-
-case class BitcoinTransactions(tx: Seq[BitcoinTx])
-
-case class BitcoinTx(tx: String)
