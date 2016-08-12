@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2",
+  version := "0.2.1",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("https://github.com/ubirch/ubirch-notary-service")),
@@ -40,6 +40,8 @@ lazy val json = project
 val akkaV = "2.3.9"
 val sprayV = "1.3.3"
 
+resolvers += Resolver.sonatypeRepo("releases")
+
 lazy val depBackend = Seq(
 
   "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile",
@@ -60,6 +62,9 @@ lazy val depBackend = Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
 
   // misc
-  "joda-time" % "joda-time" % "2.9.3"
+  "joda-time" % "joda-time" % "2.9.3",
+
+  // ubirch
+  "com.ubirch.util" %% "crypto-util" % "0.1"
 
 )

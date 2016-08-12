@@ -62,13 +62,27 @@ The service has three main routes.
 
 ### Publish Data on Blockchain
 
-    POST /v1/notary/notarize
+    POST /v1/notary/notarize // (with `Header: Content-Type: application/json`)
 
-An example for the JSON we may POST (with `Header: Content-Type: application/json`).
+This method can be used to publish a string as we send it in or treat the string as a hex-encoded hash. BitcoinJ limits
+the information to 40 bytes.
+
+To notarize a simple string (not a hash) we may POST:
 
 ```{.json}
 {
-  "data": "ubirch-test", // BitcoinJ allows up to 40 bytes
+  "data": "ubirch-test"
+  "signature": "$SIGNATURE", // (optional) signature of "data" (will become mandatory at some point)
+  "publicKey": "$PUBLIC_KEY" // (optional) publicKey allowing us to verify the signature; we also have to trust it (will become mandatory at some point)
+}
+```
+
+To notarize a hex-encoded hash we may POST:
+
+```{.json}
+{
+  "data": "8e2cffc1287d06c7631f036fbd1634d5cbf015acf345f1f37566c00014b20add"
+  "dataIsHash": true,
   "signature": "$SIGNATURE", // (optional) signature of "data" (will become mandatory at some point)
   "publicKey": "$PUBLIC_KEY" // (optional) publicKey allowing us to verify the signature; we also have to trust it (will become mandatory at some point)
 }

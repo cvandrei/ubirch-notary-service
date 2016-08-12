@@ -6,6 +6,7 @@ import com.ubirch.notary.Boot
 import com.ubirch.notary.config.{AppConfig, AppConst}
 import com.ubirch.notary.directives.UriPathDirective
 import com.ubirch.notary.json.{NotarizeResponse, Notarize}
+import com.ubirch.util.crypto.hash.HashUtil
 import org.bitcoinj.core.{Address, Coin, InsufficientMoneyException, NetworkParameters, Transaction}
 import org.bitcoinj.script.ScriptBuilder
 import org.bitcoinj.wallet.SendRequest
@@ -32,7 +33,7 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
 
           case true =>
 
-            sendOpReturn(notarizeReq.data) match {
+            sendOpReturn(notarizeReq) match {
               case Some(txHash) => NotarizeResponse(txHash)
               case None => HttpResponse(PreconditionFailed, HttpEntity("Unable to notarize right now. Either we ran out of bitcoins or you tried to send too much data (<= 40 bytes)."))
             }
@@ -57,11 +58,12 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
   }
 
   /**
+    * Trigger sending an OP_RETURN (uses only the "data" and "dataIsHash" fields from the incoming [NotarizeData]).
     *
-    * @param data data portion of the resulting OP_RETURN (currently <= 40 bytes)
+    * @param notarize json from the request
     * @return None if there was an error
     */
-  private def sendOpReturn(data: String): Option[String] = {
+  private def sendOpReturn(notarize: Notarize): Option[String] = {
 
     val wallet = Boot.wallet
 
@@ -70,7 +72,7 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
 
     try {
 
-      opReturnRequest(network, changeAddress, data) match {
+      opReturnRequest(network, changeAddress, notarize.data, notarize.dataIsHash) match {
 
         case None => None
 
@@ -99,10 +101,14 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
     */
   private def opReturnRequest(network: NetworkParameters,
                               recipient: Address,
-                              dataString: String
+                              dataString: String,
+                              dataIsHash: Boolean
                              ): Option[SendRequest] = {
 
-    val data = dataString.toCharArray.map(_.toByte)
+    val data: Array[Byte] = dataIsHash match {
+      case true => HashUtil.hashAsBytes(dataString)
+      case false => dataString.toCharArray.map(_.toByte)
+    }
 
     try {
 
