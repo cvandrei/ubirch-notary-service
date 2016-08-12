@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.1",
+  version := "0.3.0-SNAPSHOT",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("https://github.com/ubirch/ubirch-notary-service")),
