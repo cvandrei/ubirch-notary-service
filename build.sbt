@@ -1,5 +1,3 @@
-import sbt.Keys._
-
 packagedArtifacts in file(".") := Map.empty // disable publishing of root project
 
 lazy val commonSettings = Seq(
@@ -14,7 +12,10 @@ lazy val commonSettings = Seq(
   scmInfo := Some(ScmInfo(
     url("https://github.com/ubirch/ubirch-notary-service"),
     "https://github.com/ubirch/ubirch-notary-service"
-  ))
+  )),
+  resolvers ++= Seq(
+    Resolver.sonatypeRepo("snapshots")
+  )
 
 )
 
@@ -40,8 +41,6 @@ lazy val json = project
 val akkaV = "2.3.9"
 val sprayV = "1.3.3"
 
-resolvers += Resolver.sonatypeRepo("releases")
-
 lazy val depBackend = Seq(
 
   "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile",
@@ -65,6 +64,6 @@ lazy val depBackend = Seq(
   "joda-time" % "joda-time" % "2.9.3",
 
   // ubirch
-  "com.ubirch.util" %% "crypto-util" % "0.1"
+  "com.ubirch.util" %% "crypto" % "0.2-SNAPSHOT"
 
 )
