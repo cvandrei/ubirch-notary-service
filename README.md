@@ -5,13 +5,36 @@
 This REST service allows us to notarize data using the Bitcoin Blockchain. The REST API is documented here: 
 [REST API with spray](./rest-spray.html).
 
-## Scala Dependencies
+## Scala Dependencies & Configs
 
-    resolvers += Resolver.sonatypeRepo("snapshots")
+### `model`
+
+    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
     libraryDependencies ++= Seq(
       "com.ubirch.notary" %% "model" % "0.3.0-SNAPSHOT"
+    )
+
+### `server`
+
+    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+    libraryDependencies ++= Seq(
       "com.ubirch.notary" %% "server" % "0.3.0-SNAPSHOT"
     )
+
+### `client`
+
+    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots") )
+    libraryDependencies ++= Seq(
+      "com.ubirch.notary" %% "client" % "0.3.0-SNAPSHOT"
+    )
+
+You may configure which NotaryService the client calls by adding the test server for example to your config:
+
+   notary {
+     client {
+       serverUrl = "http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com:8080/v1/notary/notarize"
+     }
+   }
 
 ## Links
 
