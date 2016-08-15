@@ -30,9 +30,9 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
 You may configure which NotaryService the client calls by adding the test server for example to your config:
 
-    notary {
+    notaryService {
       client {
-        serverUrl = "http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com:8080/v1/notary/notarize"
+        url = "http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com:8080/v1/notary/notarize"
       }
     }
 

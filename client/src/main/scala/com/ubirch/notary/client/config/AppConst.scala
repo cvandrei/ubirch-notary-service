@@ -6,6 +6,6 @@ package com.ubirch.notary.client.config
   */
 object AppConst {
 
-  final val ANCHOR_URL = "notary.client.serverUrl"
+  final val ANCHOR_URL = "notaryService.client.url"
 
 }
