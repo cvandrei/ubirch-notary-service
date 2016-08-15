@@ -1,5 +1,7 @@
 packagedArtifacts in file(".") := Map.empty // disable publishing of root project
 
+lazy val testConfiguration = "-Dconfig.resource=" + Option(System.getProperty("test.config")).getOrElse("application.dev.conf")
+
 lazy val commonSettings = Seq(
 
   scalaVersion := "2.11.8",
@@ -15,7 +17,9 @@ lazy val commonSettings = Seq(
   )),
   resolvers ++= Seq(
     Resolver.sonatypeRepo("snapshots")
-  )
+  ),
+
+  javaOptions in Test += testConfiguration
 
 )
 
