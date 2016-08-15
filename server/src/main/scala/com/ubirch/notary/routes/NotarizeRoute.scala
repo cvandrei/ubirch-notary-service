@@ -106,7 +106,7 @@ class NotarizeRoute extends Directives with UriPathDirective with LazyLogging {
                              ): Option[SendRequest] = {
 
     val data: Array[Byte] = dataIsHash match {
-      case true => HashUtil.hashAsBytes(dataString)
+      case true => HashUtil.hashToBytes(dataString)
       case false => dataString.toCharArray.map(_.toByte)
     }
 
