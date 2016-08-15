@@ -21,9 +21,9 @@ lazy val commonSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(backend, json)
+  .aggregate(server, json)
 
-lazy val backend = project
+lazy val server = project
   .settings(commonSettings: _*)
   .dependsOn(json)
   .settings(
