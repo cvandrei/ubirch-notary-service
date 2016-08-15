@@ -27,7 +27,6 @@ lazy val server = project
   .settings(commonSettings: _*)
   .dependsOn(json)
   .settings(
-    name := "backend",
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
     libraryDependencies ++= depBackend
   )
