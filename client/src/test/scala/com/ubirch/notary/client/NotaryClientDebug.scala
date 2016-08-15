@@ -3,7 +3,7 @@ package com.ubirch.notary.client
 import java.net.URL
 
 import com.ubirch.notary.client.json.MyJsonProtocol
-import com.ubirch.notary.json.NotarizeResponse
+import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import com.ubirch.util.crypto.hash.HashUtil
 import org.json4s.native.JsonMethods._
 import org.scalatest.{FeatureSpec, Matchers}
@@ -21,24 +21,25 @@ class NotaryClientDebug extends FeatureSpec
 
   feature("NotaryClient.notarize") {
 
-    ignore("for manual debug") {
+    scenario("for manual debug") {
 
       val event = "ubirch-chain-test-2342"
-      val url = new URL("http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com:8080/v1/notary/notarize")
-      val json = s"""{"data": "$event"}"""
-      val body = RequestBody(json, APPLICATION_JSON)
+      val url = new URL("http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com/v1/notary/notarize")
 
-      val httpClient = new HttpClient
-      val res = httpClient.post(url, Some(body))
+      val eventHash = HashUtil.sha256HexString(event)
+      val notarizeObject = Notarize(eventHash, dataIsHash = true)
+      val json = serialization.write(notarizeObject)
+
+      val body = RequestBody(json, APPLICATION_JSON)
+      val res = (new HttpClient).post(url, Some(body))
 
       println("=== RESPONSE ===")
       println(s"status=${res.status}, body=${res.body.asString}")
       val hash = parse(res.body.asString).extract[NotarizeResponse]
 
-      val expected = HashUtil.sha256HexString(event)
-      hash.hash should be(expected)
+      hash.hash shouldNot be("")
 
-      println(s"hash=${hash.hash}")
+      println(s"txHash=${hash.hash}")
 
     }
 

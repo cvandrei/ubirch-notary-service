@@ -5,7 +5,7 @@ import java.net.URL
 import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.client.config.Config
 import com.ubirch.notary.client.json.MyJsonProtocol
-import com.ubirch.notary.json.NotarizeResponse
+import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import org.json4s.native.JsonMethods._
 import uk.co.bigbeeconsultants.http.HttpClient
 import uk.co.bigbeeconsultants.http.header.MediaType._
@@ -19,10 +19,13 @@ import uk.co.bigbeeconsultants.http.response.Status._
 object NotaryClient extends MyJsonProtocol
   with LazyLogging {
 
-  def notarize(blockHash: String): Option[NotarizeResponse] = {
+  def notarize(blockHash: String, dataIsHash: Boolean = false): Option[NotarizeResponse] = {
 
     val notarizeUrl = new URL(Config.anchorUrl)
-    val json = s"""{"data": "$blockHash"}"""
+
+    val notarizeObject = Notarize(blockHash, dataIsHash)
+    val json = serialization.write(notarizeObject)
+    logger.debug(s"json=$json")
     val body = RequestBody(json, APPLICATION_JSON)
 
     val httpClient = new HttpClient
