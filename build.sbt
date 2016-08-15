@@ -21,21 +21,18 @@ lazy val commonSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(server, json)
+  .aggregate(server, model)
 
 lazy val server = project
   .settings(commonSettings: _*)
-  .dependsOn(json)
+  .dependsOn(model)
   .settings(
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
     libraryDependencies ++= depBackend
   )
 
-lazy val json = project
+lazy val model = project
   .settings(commonSettings: _*)
-  .settings(
-    name := "json"
-  )
 
 val akkaV = "2.3.9"
 val sprayV = "1.3.3"
