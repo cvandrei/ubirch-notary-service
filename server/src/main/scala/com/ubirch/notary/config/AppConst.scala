@@ -16,7 +16,7 @@ object AppConst {
   final val pathVersion = "v1"
   final val urlVersion = s"/$pathVersion"
 
-  final val pathNotary = "notary"
+  final val pathNotary = "notaryService"
   final val urlNotary = s"$urlVersion/$pathNotary"
 
   final val pathNotarize = "notarize"

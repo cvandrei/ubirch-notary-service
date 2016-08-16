@@ -52,17 +52,17 @@ The service has three main routes.
 
 ### Wallet Information
 
-    GET /v1/notary/wallet-info
+    GET /v1/notaryService/wallet-info
 
 ### Transactions
 
-    GET /v1/notary/transactions
-    GET /v1/notary/transactions/unspent
-    GET /v1/notary/transactions/pending
+    GET /v1/notaryService/transactions
+    GET /v1/notaryService/transactions/unspent
+    GET /v1/notaryService/transactions/pending
 
 ### Publish Data on Blockchain
 
-    POST /v1/notary/notarize // (with `Header: Content-Type: application/json`)
+    POST /v1/notaryService/notarize // (with `Header: Content-Type: application/json`)
 
 This method can be used to publish a string as we send it in or treat the string as a hex-encoded hash. BitcoinJ limits
 the information to 40 bytes.
@@ -92,14 +92,14 @@ To notarize a hex-encoded hash we may POST:
 
 ### Wallet Information
 
-    curl -k "http://localhost:8080/v1/notary/wallet-info"
+    curl -k "http://localhost:8080/v1/notaryService/wallet-info"
 
 ### Transactions
 
-    curl -k "http://localhost:8080/v1/notary/transactions"
-    curl -k "http://localhost:8080/v1/notary/transactions/unspent"
-    curl -k "http://localhost:8080/v1/notary/transactions/pending"
+    curl -k "http://localhost:8080/v1/notaryService/transactions"
+    curl -k "http://localhost:8080/v1/notaryService/transactions/unspent"
+    curl -k "http://localhost:8080/v1/notaryService/transactions/pending"
 
 ### Publish Data on Blockchain
 
-    curl -X POST -H "Content-Type: application/json" -k "http://localhost:8080/v1/notary/notarize" -d '{"Notarize": { "payload": "ubirch-test", "signature": "sig1", "publicKey": "pubKey"} }'
+    curl -X POST -H "Content-Type: application/json" -k "http://localhost:8080/v1/notaryService/notarize" -d '{"Notarize": { "payload": "ubirch-test", "signature": "sig1", "publicKey": "pubKey"} }'
