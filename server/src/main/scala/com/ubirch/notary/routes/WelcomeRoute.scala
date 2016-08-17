@@ -1,7 +1,7 @@
 package com.ubirch.notary.routes
 
-import com.ubirch.notary.json.Welcome
-import spray.routing.{Route, Directives}
+import com.ubirch.notary.core.util.WelcomeUtil
+import spray.routing.{Directives, Route}
 
 /**
   * author: cvandrei
@@ -15,7 +15,7 @@ class WelcomeRoute extends Directives {
 
     get {
       complete {
-        Welcome(message = "Welcome to the ubirch NotaryService")
+        WelcomeUtil.welcome
       }
     }
 

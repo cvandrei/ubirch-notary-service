@@ -2,13 +2,10 @@ package com.ubirch.notary.routes
 
 import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.Boot
-import com.ubirch.notary.config.AppConst
+import com.ubirch.notary.util.RouteConstants
+import com.ubirch.notary.core.bitcoin.BitcoinWalletUtil
 import com.ubirch.notary.directives.UriPathDirective
-import com.ubirch.notary.json.{BitcoinTx, BitcoinTransactions}
 import spray.routing.{Directives, Route}
-
-import scala.collection.JavaConverters._
-import scala.collection.mutable.ListBuffer
 
 /**
   * author: cvandrei
@@ -22,47 +19,30 @@ class TransactionRoute extends Directives with UriPathDirective with LazyLogging
 
     get {
 
-      (path(AppConst.pathTransactions / AppConst.pathUnspent) & uriPath & hostName) { (path, host) =>
+      (path(RouteConstants.pathTransactions / RouteConstants.pathUnspent) & uriPath & hostName) { (path, host) =>
 
         logger.info(s"$path GET from $host")
         complete {
-          unspentTransactions
+          BitcoinWalletUtil.unspentTransactions(Boot.wallet)
         }
 
-      } ~ (path(AppConst.pathTransactions / AppConst.pathPending) & uriPath & hostName) { (path, host) =>
+      } ~ (path(RouteConstants.pathTransactions / RouteConstants.pathPending) & uriPath & hostName) { (path, host) =>
 
         logger.info(s"$path GET from $host")
         complete {
-          pendingTransactions
+          BitcoinWalletUtil.pendingTransactions(Boot.wallet)
         }
 
-      } ~ (path(AppConst.pathTransactions) & uriPath & hostName) { (path, host) =>
+      } ~ (path(RouteConstants.pathTransactions) & uriPath & hostName) { (path, host) =>
 
         logger.info(s"$path GET from $host")
         complete {
-          allTransactions
+          BitcoinWalletUtil.allTransactions(Boot.wallet)
         }
 
       }
 
     }
-
-  }
-
-  private def unspentTransactions: BitcoinTransactions = bitcoinTransactionsToResponse(Boot.wallet.getUnspents)
-
-  private def pendingTransactions: BitcoinTransactions = bitcoinTransactionsToResponse(Boot.wallet.getPendingTransactions)
-
-  private def allTransactions: BitcoinTransactions = bitcoinTransactionsToResponse(Boot.wallet.getTransactionsByTime)
-
-  private def bitcoinTransactionsToResponse[B](txJavaList: java.util.Collection[B]): BitcoinTransactions = {
-
-    val txListBuffer = new ListBuffer[BitcoinTx]
-    for (tx <- txJavaList.asScala) {
-      txListBuffer += BitcoinTx(tx.toString)
-    }
-
-    BitcoinTransactions(txListBuffer.toSeq)
 
   }
 

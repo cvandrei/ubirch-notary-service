@@ -1,3 +1,5 @@
+import sbt.Resolver
+
 packagedArtifacts in file(".") := Map.empty // disable publishing of root project
 
 lazy val testConfiguration = "-Dconfig.resource=" + Option(System.getProperty("test.config")).getOrElse("application.dev.conf")
@@ -16,7 +18,9 @@ lazy val commonSettings = Seq(
     "https://github.com/ubirch/ubirch-notary-service"
   )),
   resolvers ++= Seq(
-    Resolver.sonatypeRepo("snapshots")
+    Resolver.sonatypeRepo("snapshots"),
+    Resolver.bintrayRepo("rick-beton", "maven"),
+    Resolver.bintrayRepo("hseeberger", "maven")
   ),
 
   javaOptions in Test += testConfiguration
@@ -25,27 +29,30 @@ lazy val commonSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(server, model, client)
+  .aggregate(server, model, core, client)
 
 lazy val server = project
   .settings(commonSettings: _*)
-  .dependsOn(model)
+  .dependsOn(model, core)
   .settings(
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
-    libraryDependencies ++= depBackend
+    libraryDependencies ++= depServer
   )
 
 lazy val model = project
   .settings(commonSettings: _*)
 
+lazy val core = project
+  .settings(commonSettings: _*)
+  .dependsOn(model)
+  .settings(
+    libraryDependencies ++= depCore
+  )
+
 lazy val client = project
   .settings(commonSettings: _*)
   .dependsOn(model)
   .settings(
-    resolvers ++= Seq(
-      Resolver.bintrayRepo("rick-beton", "maven"),
-      Resolver.bintrayRepo("hseeberger", "maven")
-    ),
     libraryDependencies ++= depClientRest
   )
 
@@ -54,9 +61,9 @@ val sprayV = "1.3.3"
 val json4sV = "3.4.0"
 val scalaTestV = "3.0.0"
 
-lazy val depBackend = Seq(
+lazy val depServer = Seq(
 
-  "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile",
+  bitcoinj,
 
   // Spray
   "io.spray" %% "spray-can" % sprayV,
@@ -66,7 +73,6 @@ lazy val depBackend = Seq(
 
   // logging and config
   "com.typesafe.akka" %% "akka-actor" % akkaV,
-  typesafeConfig,
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   "ch.qos.logback" % "logback-core" % "1.1.7",
   "net.logstash.logback" % "logstash-logback-encoder" % "4.3",
@@ -74,11 +80,15 @@ lazy val depBackend = Seq(
   typesafeLogging,
 
   // misc
-  "joda-time" % "joda-time" % "2.9.3",
+  "joda-time" % "joda-time" % "2.9.3"
 
-  // ubirch
-  ubirchUtilCrypto
+)
 
+lazy val depCore = Seq(
+  bitcoinj,
+  ubirchUtilCrypto,
+  typesafeConfig,
+  typesafeLogging
 )
 
 lazy val depClientRest = {
@@ -93,6 +103,8 @@ lazy val depClientRest = {
     scalaTest
   )
 }
+
+lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile"
 
 lazy val typesafeConfig = "com.typesafe" % "config" % "1.3.0"
 

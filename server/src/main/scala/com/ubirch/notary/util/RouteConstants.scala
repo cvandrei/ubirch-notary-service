@@ -1,17 +1,10 @@
-package com.ubirch.notary.config
+package com.ubirch.notary.util
 
 /**
   * author: cvandrei
   * since: 2016-06-08
   */
-object AppConst {
-
-  final val INTERFACE = "notaryService.interface"
-  final val PORT = "notaryService.port"
-
-  final val BITCOIN_NETWORK = "bitcoin.network"
-  final val BITCOIN_WALLET_DIRECTORY = "bitcoin.wallet.directory"
-  final val BITCOIN_WALLET_PREFIX = "bitcoin.wallet.prefix"
+object RouteConstants {
 
   final val v1 = "v1"
   final val urlVersion = s"/$v1"

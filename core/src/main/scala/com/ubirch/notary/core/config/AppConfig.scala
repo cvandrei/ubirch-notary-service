@@ -1,7 +1,6 @@
-package com.ubirch.notary.config
+package com.ubirch.notary.core.config
 
 import com.typesafe.config.{Config, ConfigFactory}
-
 import scala.collection.JavaConverters._
 
 /**
@@ -12,7 +11,7 @@ object AppConfig {
 
   private val envKey = "ubirch.env"
 
-  val config: Config = {
+  private val config: Config = {
 
     getEnvKey match {
 
@@ -25,6 +24,18 @@ object AppConfig {
     }
 
   }
+
+  def serverInterface: String = config.getString(ConfigKeys.INTERFACE)
+
+  def serverPort: Int = config.getInt(ConfigKeys.PORT)
+
+  def bitcoinNetwork: String = config.getString(ConfigKeys.BITCOIN_NETWORK)
+
+  def bitcoinWalletDirectory: String = config.getString(ConfigKeys.BITCOIN_WALLET_DIRECTORY)
+
+  def bitcoinWalletPrefix: String = config.getString(ConfigKeys.BITCOIN_WALLET_PREFIX)
+
+  def bitcoinFeePerKb: Long = config.getLong(ConfigKeys.BITCOIN_FEE_PER_KB)
 
   private def getEnvKey: Option[String] = {
 
