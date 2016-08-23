@@ -2,7 +2,7 @@ package com.ubirch.notary.client
 
 import java.net.URL
 
-import com.ubirch.notary.client.json.MyJsonProtocol
+import com.ubirch.util.json.MyJsonProtocol
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import com.ubirch.util.crypto.hash.HashUtil
 import org.json4s.native.JsonMethods._

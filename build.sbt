@@ -96,11 +96,9 @@ lazy val depClientRest = {
     "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1",
     ubirchUtilConfig,
     typesafeLogging,
-    json4sNative,
-    json4sExt,
-    json4sJackson,
     ubirchUtilCrypto % "test",
-    scalaTest
+    scalaTest % "test",
+    ubirchUtilJsonAutoConvert
   )
 }
 
@@ -116,5 +114,6 @@ lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
 lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1-SNAPSHOT"
 lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2-SNAPSHOT"
+lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.1-SNAPSHOT"
 
-lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV % "test"
+lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV

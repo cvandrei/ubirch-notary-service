@@ -4,7 +4,7 @@ import java.net.URL
 
 import com.typesafe.scalalogging.LazyLogging
 import com.ubirch.notary.client.config.ClientConfig
-import com.ubirch.notary.client.json.MyJsonProtocol
+import com.ubirch.util.json.MyJsonProtocol
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import org.json4s.native.JsonMethods._
 import uk.co.bigbeeconsultants.http.HttpClient
