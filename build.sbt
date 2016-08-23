@@ -94,7 +94,7 @@ lazy val depCore = Seq(
 lazy val depClientRest = {
   Seq(
     "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1",
-    typesafeConfig,
+    ubirchUtilConfig,
     typesafeLogging,
     json4sNative,
     json4sExt,
@@ -105,8 +105,6 @@ lazy val depClientRest = {
 }
 
 lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile"
-
-lazy val typesafeConfig = "com.typesafe" % "config" % "1.3.0"
 
 lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
 

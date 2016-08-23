@@ -3,7 +3,7 @@ package com.ubirch.notary.client
 import java.net.URL
 
 import com.typesafe.scalalogging.LazyLogging
-import com.ubirch.notary.client.config.Config
+import com.ubirch.notary.client.config.ClientConfig
 import com.ubirch.notary.client.json.MyJsonProtocol
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import org.json4s.native.JsonMethods._
@@ -21,7 +21,7 @@ object NotaryClient extends MyJsonProtocol
 
   def notarize(blockHash: String, dataIsHash: Boolean = false): Option[NotarizeResponse] = {
 
-    val notarizeUrl = new URL(Config.anchorUrl)
+    val notarizeUrl = new URL(ClientConfig.anchorUrl)
 
     val notarizeObject = Notarize(blockHash, dataIsHash)
     val json = serialization.write(notarizeObject)
