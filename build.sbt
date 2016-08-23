@@ -87,7 +87,7 @@ lazy val depServer = Seq(
 lazy val depCore = Seq(
   bitcoinj,
   ubirchUtilCrypto,
-  typesafeConfig,
+  ubirchUtilConfig,
   typesafeLogging
 )
 
@@ -116,6 +116,7 @@ lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
 
 lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
+lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1-SNAPSHOT"
 lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2-SNAPSHOT"
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV % "test"
