@@ -98,6 +98,7 @@ lazy val depClientRest = {
     typesafeLogging,
     ubirchUtilCrypto % "test",
     scalaTest % "test",
+    json4sNative,
     ubirchUtilJsonAutoConvert
   )
 }
@@ -107,9 +108,7 @@ lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile"
 lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
 
 lazy val json4sNative = "org.json4s" %% "json4s-native" % json4sV
-
 lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
-
 lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
 lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1-SNAPSHOT"
