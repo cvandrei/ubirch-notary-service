@@ -27,7 +27,7 @@ lazy val commonSettings = Seq(
 
 )
 
-lazy val root = (project in file("."))
+lazy val notaryService = (project in file("."))
   .settings(commonSettings: _*)
   .aggregate(server, model, core, client)
 
