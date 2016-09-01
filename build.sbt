@@ -1,5 +1,3 @@
-import sbt.Resolver
-
 packagedArtifacts in file(".") := Map.empty // disable publishing of root project
 
 lazy val testConfiguration = "-Dconfig.resource=" + Option(System.getProperty("test.config")).getOrElse("application.dev.conf")
@@ -17,11 +15,8 @@ lazy val commonSettings = Seq(
     url("https://github.com/ubirch/ubirch-notary-service"),
     "https://github.com/ubirch/ubirch-notary-service"
   )),
-  resolvers ++= Seq(
-    Resolver.sonatypeRepo("snapshots"),
-    Resolver.bintrayRepo("rick-beton", "maven"),
-    Resolver.bintrayRepo("hseeberger", "maven")
-  ),
+
+  resolvers += Resolver.sonatypeRepo("snapshots"),
 
   javaOptions in Test += testConfiguration
 
@@ -46,14 +41,22 @@ lazy val core = project
   .settings(commonSettings: _*)
   .dependsOn(model)
   .settings(
-    libraryDependencies ++= depCore
+    libraryDependencies ++= depCore,
+    resolvers ++= Seq(
+      resolverHasher
+    )
   )
 
 lazy val client = project
   .settings(commonSettings: _*)
   .dependsOn(model)
   .settings(
-    libraryDependencies ++= depClientRest
+    libraryDependencies ++= depClientRest,
+    resolvers ++= Seq(
+      resolverBeeClient,
+      resolverSeebergerJson,
+      resolverHasher
+    )
   )
 
 val akkaV = "2.3.9"
@@ -93,7 +96,7 @@ lazy val depCore = Seq(
 
 lazy val depClientRest = {
   Seq(
-    "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1",
+    beeClient,
     ubirchUtilConfig,
     typesafeLogging,
     ubirchUtilCrypto % "test",
@@ -104,6 +107,8 @@ lazy val depClientRest = {
 }
 
 lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile"
+
+lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
 
 lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
 
@@ -116,3 +121,7 @@ lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2-SNAPSHOT"
 lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.1-SNAPSHOT"
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
+
+lazy val resolverSeebergerJson = Resolver.bintrayRepo("hseeberger", "maven")
+lazy val resolverHasher = "RoundEights" at "http://maven.spikemark.net/roundeights"
+lazy val resolverBeeClient = Resolver.bintrayRepo("rick-beton", "maven")

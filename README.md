@@ -16,7 +16,10 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
 ### `core`
 
-    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+    resolvers ++= Seq(
+      Resolver.sonatypeRepo("snapshots"),
+      "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
+    )
     libraryDependencies ++= Seq(
       "com.ubirch.notary" %% "core" % "0.3.0-SNAPSHOT"
     )
@@ -30,7 +33,12 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
 ### `client`
 
-    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots") )
+    resolvers ++= Seq(
+      Resolver.sonatypeRepo("snapshots"),
+      Resolver.bintrayRepo("hseeberger", "maven"), // Seeberger Json
+      Resolver.bintrayRepo("rick-beton", "maven"), // BeeClient
+      "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
+    )
     libraryDependencies ++= Seq(
       "com.ubirch.notary" %% "client" % "0.3.0-SNAPSHOT"
     )
