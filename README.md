@@ -60,3 +60,7 @@ A list of links that helped us with the OP_RETURN message:
 * [bitcoin.it Wiki: OP_RETURN](https://en.bitcoin.it/wiki/OP_RETURN)
 * [How to put custom messages into Bitcoin blockchain – OP_RETURN](https://www.wlangiewicz.com/2014/10/24/how-to-put-custom-messages-into-bitcoin-blockchain-op_return/)
 * [bitcoinj Mailinglist: is OP_RETURN available in bitcoinj?](https://groups.google.com/forum/?fromgroups#!topic/bitcoinj/766ZhvJjIqM)
+
+Faucets:
+
+* [Mainnet and Testnet Faucets](https://en.bitcoin.it/wiki/List_of_faucets)
