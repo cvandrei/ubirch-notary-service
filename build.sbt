@@ -106,7 +106,7 @@ lazy val depClientRest = {
   )
 }
 
-lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.2" % "compile"
+lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.3" % "compile"
 
 lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
 
