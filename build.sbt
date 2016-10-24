@@ -116,9 +116,9 @@ lazy val json4sNative = "org.json4s" %% "json4s-native" % json4sV
 lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
 lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
-lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1-SNAPSHOT"
-lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2-SNAPSHOT"
-lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.1-SNAPSHOT"
+lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1"
+lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2"
+lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.1"
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
 
