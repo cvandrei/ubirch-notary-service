@@ -20,4 +20,6 @@ object AppConfig extends ConfigBase {
 
   def bitcoinFeePerKb: Long = config.getLong(ConfigKeys.BITCOIN_FEE_PER_KB)
 
+  def bitcoinTorEnabled: Boolean = config.getBoolean(ConfigKeys.BITCOIN_TOR_ENABLED)
+
 }

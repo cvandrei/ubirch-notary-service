@@ -29,6 +29,10 @@ Bitcoin connects to a network (`org.bitcoin.regtest`, `org.bitcoin.test` or `org
 
     bitcoin.network
 
+We can tell bitcoinj to use a Tor proxy.
+
+    bitcoin.tor.enabled = true (defaults to false)
+
 There's also a wallet. If none is found a new one is generated in the specified location.
 
     bitcoin.wallet.directory

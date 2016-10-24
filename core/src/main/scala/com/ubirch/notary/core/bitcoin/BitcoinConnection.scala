@@ -3,8 +3,11 @@ package com.ubirch.notary.core.bitcoin
 import java.io.File
 
 import com.google.common.util.concurrent.Service
+import com.typesafe.config.ConfigException.Missing
 import com.typesafe.scalalogging.LazyLogging
+
 import com.ubirch.notary.core.config.AppConfig
+
 import org.bitcoinj.core.NetworkParameters
 import org.bitcoinj.kits.WalletAppKit
 import org.bitcoinj.wallet.Wallet
@@ -32,6 +35,7 @@ class BitcoinConnection extends LazyLogging {
 
     val kit = new WalletAppKit(network, walletDir, walletPrefix)
     val service = kit.startAsync
+    enableTorIfConfigured(kit)
     kit.awaitRunning()
     logger.info("=== finished starting bitcoin connection ===")
 
@@ -63,6 +67,21 @@ class BitcoinConnection extends LazyLogging {
 
     }
 
+
+  }
+
+  private def enableTorIfConfigured(kit: WalletAppKit) = {
+
+    try {
+
+      if (AppConfig.bitcoinTorEnabled) {
+        logger.info("Tor proxy enabled")
+        kit.useTor()
+      }
+
+    } catch {
+      case e: Missing => logger.info("Tor proxy is not enabled")
+    }
 
   }
 

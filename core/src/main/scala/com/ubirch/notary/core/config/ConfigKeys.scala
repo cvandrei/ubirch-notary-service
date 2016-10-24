@@ -13,5 +13,6 @@ object ConfigKeys {
   final val BITCOIN_WALLET_DIRECTORY = "bitcoin.wallet.directory"
   final val BITCOIN_WALLET_PREFIX = "bitcoin.wallet.prefix"
   final val BITCOIN_FEE_PER_KB = "bitcoin.feePerKb"
+  final val BITCOIN_TOR_ENABLED = "bitcoin.tor.enabled"
 
 }
