@@ -18,9 +18,10 @@ import spray.can.Http
   */
 object Boot extends App with LazyLogging {
 
-  logger.info("notaryService started")
+  logger.info("notaryService is starting")
   val bitcoinConnection = new BitcoinConnection
   val system = start()
+  logger.info("notaryService started")
 
   Runtime.getRuntime.addShutdownHook(new Thread() {
     override def run() = {
