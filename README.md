@@ -51,6 +51,12 @@ You may configure which NotaryService the client calls by adding the test server
       }
     }
 
+## Release History
+
+### 0.2.2
+
+  * added Tor Support
+
 ## Links
 
 A list of links that helped us with the OP_RETURN message:
