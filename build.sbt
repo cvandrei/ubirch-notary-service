@@ -35,7 +35,10 @@ lazy val server = project
   .dependsOn(model, core)
   .settings(
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
-    libraryDependencies ++= depServer
+    libraryDependencies ++= depServer,
+    resourceGenerators in Compile += Def.task {
+      generateDockerFile(baseDirectory.value / ".." / "Dockerfile", name.value, version.value)
+    }.taskValue
   )
 
 lazy val model = project

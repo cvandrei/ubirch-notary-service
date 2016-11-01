@@ -11,7 +11,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
     resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "model" % "0.3.0-SNAPSHOT"
+      "com.ubirch.notary" %% "model" % "0.2.3"
     )
 
 ### `core`
@@ -21,14 +21,14 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
       "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
     )
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "core" % "0.3.0-SNAPSHOT"
+      "com.ubirch.notary" %% "core" % "0.2.3"
     )
 
 ### `server`
 
     resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "server" % "0.3.0-SNAPSHOT"
+      "com.ubirch.notary" %% "server" % "0.2.3"
     )
 
 ### `client`
@@ -40,7 +40,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
       "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
     )
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "client" % "0.3.0-SNAPSHOT"
+      "com.ubirch.notary" %% "client" % "0.2.3"
     )
 
 You may configure which NotaryService the client calls by adding the test server for example to your config:
@@ -50,6 +50,25 @@ You may configure which NotaryService the client calls by adding the test server
         url = "http://ubirchnotaryservice-env.us-east-1.elasticbeanstalk.com/v1/notary/notarize"
       }
     }
+
+## Release History
+
+### 0.2.3 (2016-11-01)
+
+  * add Dockerfile generation
+  * update to sbt 0.13.12
+
+### 0.2.2 (2016-11-01)
+
+  * added Tor Support
+  * refactored module structure to conform with our coding conventions
+
+## Docker
+
+This service can be run in a Docker container. Running the following shell script will generate a Dockerfile in the
+project's root folder.
+
+    ./generate-dockerfile.sh
 
 ## Links
 

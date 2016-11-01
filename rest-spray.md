@@ -29,6 +29,10 @@ Bitcoin connects to a network (`org.bitcoin.regtest`, `org.bitcoin.test` or `org
 
     bitcoin.network
 
+We can tell bitcoinj to use a Tor proxy.
+
+    bitcoin.tor.enabled = true (defaults to false)
+
 There's also a wallet. If none is found a new one is generated in the specified location.
 
     bitcoin.wallet.directory
@@ -49,6 +53,8 @@ contains it.
 ## Available Methods {#methods}
 
 The service has three main routes.
+
+**curl calls are listed in the next chapter**
 
 ### Wallet Information
 
@@ -92,14 +98,20 @@ To notarize a hex-encoded hash we may POST:
 
 ### Wallet Information
 
-    curl -k "http://localhost:8080/v1/notaryService/wallet-info"
+    curl http://localhost:8080/v1/notaryService/wallet-info
 
 ### Transactions
 
-    curl -k "http://localhost:8080/v1/notaryService/transactions"
-    curl -k "http://localhost:8080/v1/notaryService/transactions/unspent"
-    curl -k "http://localhost:8080/v1/notaryService/transactions/pending"
+    curl http://localhost:8080/v1/notaryService/transactions
+    curl http://localhost:8080/v1/notaryService/transactions/unspent
+    curl http://localhost:8080/v1/notaryService/transactions/pending
 
 ### Publish Data on Blockchain
 
-    curl -X POST -H "Content-Type: application/json" -k "http://localhost:8080/v1/notaryService/notarize" -d '{"Notarize": { "payload": "ubirch-test", "signature": "sig1", "publicKey": "pubKey"} }'
+    For clear text data:
+    
+        curl -XPOST localhost:8080/v1/notaryService/notarize -H "Content-Type: application/json" -d '{"data":"ubirch-test"}'
+    
+    If data is a hex-encoded string:
+    
+        curl -XPOST localhost:8080/v1/notaryService/notarize -H "Content-Type: application/json" -d '{"data": "8e2cffc1287d06c7631f036fbd1634d5cbf015acf345f1f37566c00014b20add", "dataIsHash": true}'
