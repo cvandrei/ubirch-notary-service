@@ -56,6 +56,7 @@ You may configure which NotaryService the client calls by adding the test server
 ### 0.2.2
 
   * added Tor Support
+  * refactored module structure to conform with our coding conventions
 
 ## Links
 
