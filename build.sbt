@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.3.0-SNAPSHOT",
+  version := "0.2.4",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -21,6 +21,10 @@ lazy val commonSettings = Seq(
   javaOptions in Test += testConfiguration
 
 )
+
+/*
+ * MODULES
+ ********************************************************/
 
 lazy val notaryService = (project in file("."))
   .settings(commonSettings: _*)
@@ -58,6 +62,10 @@ lazy val client = project
       resolverHasher
     )
   )
+
+/*
+ * MODULE DEPENDENCIES
+ ********************************************************/
 
 val akkaV = "2.3.9"
 val sprayV = "1.3.3"
@@ -106,6 +114,10 @@ lazy val depClientRest = {
   )
 }
 
+/*
+ * DEPENDENCIES
+ ********************************************************/
+
 lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.3" % "compile"
 
 lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
@@ -122,6 +134,32 @@ lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % 
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
 
+/*
+ * RESOLVER
+ ********************************************************/
+
 lazy val resolverSeebergerJson = Resolver.bintrayRepo("hseeberger", "maven")
 lazy val resolverHasher = "RoundEights" at "http://maven.spikemark.net/roundeights"
 lazy val resolverBeeClient = Resolver.bintrayRepo("rick-beton", "maven")
+
+/*
+ * MISC
+ ********************************************************/
+
+def generateDockerFile(file: File, nameString: String, versionString: String): Seq[File] = {
+
+  //  val jar = "notaryService-%s-assembly-%s.jar".format(nameString, versionString)
+  //assembleArtifact.
+  val path = "./server/target/scala-2.11/"
+  val jar = "server-assembly-0.2.3.jar"
+  //  val jar = assembly
+
+  val contents =
+    s"""FROM ubirch/java
+        |ADD "$path$jar" /app/$jar
+        |ENTRYPOINT ["java", "-jar", "/app/$jar"]
+        |""".stripMargin
+  IO.write(file, contents)
+  Seq(file)
+
+}
