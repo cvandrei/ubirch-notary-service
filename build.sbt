@@ -155,7 +155,7 @@ def generateDockerFile(file: File, nameString: String, versionString: String): S
   //assembleArtifact.
   val jar = "./server/target/scala-2.11/server-assembly-0.2.3.jar"
   val contents =
-    s"""FROM java
+    s"""FROM ubirch/java
         |ADD $jar /app/$jar
         |ENTRYPOINT ["java", "-jar", "$jar"]
         |""".stripMargin
