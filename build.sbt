@@ -154,7 +154,7 @@ def generateDockerFile(file: File, nameString: String, versionString: String): S
   //  val jar = "notaryService-%s-assembly-%s.jar".format(nameString, versionString)
   //assembleArtifact.
   val path = "./server/target/scala-2.11/"
-  val jar = "server-assembly-0.2.3.jar"
+  val jar = "server-assembly-0.2.4.jar"
   //  val jar = assembly
 
   val contents =

@@ -11,7 +11,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
     resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "model" % "0.2.3"
+      "com.ubirch.notary" %% "model" % "0.2.4"
     )
 
 ### `core`
@@ -21,14 +21,14 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
       "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
     )
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "core" % "0.2.3"
+      "com.ubirch.notary" %% "core" % "0.2.4"
     )
 
 ### `server`
 
     resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "server" % "0.2.3"
+      "com.ubirch.notary" %% "server" % "0.2.4"
     )
 
 ### `client`
@@ -40,7 +40,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
       "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
     )
     libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "client" % "0.2.3"
+      "com.ubirch.notary" %% "client" % "0.2.4"
     )
 
 You may configure which NotaryService the client calls by adding the test server for example to your config:
@@ -52,6 +52,11 @@ You may configure which NotaryService the client calls by adding the test server
     }
 
 ## Release History
+
+### 0.2.4 (2016-11-14)
+
+  * use StrictLogging instead of LazyLogging
+  * update dependency com.typesafe.scala-logging:scala-logging: 3.4.0 -> 3.5.0
 
 ### 0.2.3 (2016-11-01)
 
