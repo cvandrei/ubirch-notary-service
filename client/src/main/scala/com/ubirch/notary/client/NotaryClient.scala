@@ -2,10 +2,10 @@ package com.ubirch.notary.client
 
 import java.net.URL
 
-import com.typesafe.scalalogging.LazyLogging
+import com.typesafe.scalalogging.StrictLogging
 import com.ubirch.notary.client.config.ClientConfig
-import com.ubirch.util.json.MyJsonProtocol
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
+import com.ubirch.util.json.MyJsonProtocol
 import org.json4s.native.JsonMethods._
 import uk.co.bigbeeconsultants.http.HttpClient
 import uk.co.bigbeeconsultants.http.header.MediaType._
@@ -17,7 +17,7 @@ import uk.co.bigbeeconsultants.http.response.Status._
   * since: 2016-08-05
   */
 object NotaryClient extends MyJsonProtocol
-  with LazyLogging {
+  with StrictLogging {
 
   def notarize(blockHash: String, dataIsHash: Boolean = false): Option[NotarizeResponse] = {
 

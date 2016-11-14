@@ -1,7 +1,7 @@
 package com.ubirch.notary.core.routes
 
 import com.typesafe.config.ConfigException.Missing
-import com.typesafe.scalalogging.LazyLogging
+import com.typesafe.scalalogging.StrictLogging
 import com.ubirch.notary.core.config.AppConfig
 import com.ubirch.notary.json.Notarize
 import com.ubirch.util.crypto.hash.HashUtil
@@ -13,7 +13,7 @@ import org.bitcoinj.wallet.{SendRequest, Wallet}
   * author: cvandrei
   * since: 2016-08-17
   */
-class NotarizeRouteUtil extends LazyLogging {
+class NotarizeRouteUtil extends StrictLogging {
 
   def verifySignatureAndKey(req: Notarize): Boolean = {
 

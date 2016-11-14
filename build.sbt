@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.4",
+  version := "0.2.5",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -125,7 +125,7 @@ lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.3" % "compile"
 
 lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
 
-lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
+lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
 
 lazy val json4sNative = "org.json4s" %% "json4s-native" % json4sV
 lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
