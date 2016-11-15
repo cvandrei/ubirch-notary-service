@@ -4,7 +4,7 @@ import java.io.File
 
 import com.google.common.util.concurrent.Service
 import com.typesafe.config.ConfigException.Missing
-import com.typesafe.scalalogging.LazyLogging
+import com.typesafe.scalalogging.StrictLogging
 
 import com.ubirch.notary.core.config.AppConfig
 
@@ -16,7 +16,7 @@ import org.bitcoinj.wallet.Wallet
   * author: cvandrei
   * since: 2016-08-17
   */
-class BitcoinConnection extends LazyLogging {
+class BitcoinConnection extends StrictLogging {
 
   private var walletAppKit: Option[WalletAppKit] = None
   private var bitcoinService: Option[Service] = None

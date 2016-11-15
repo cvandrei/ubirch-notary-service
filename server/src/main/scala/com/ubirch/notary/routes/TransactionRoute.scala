@@ -1,6 +1,6 @@
 package com.ubirch.notary.routes
 
-import com.typesafe.scalalogging.LazyLogging
+import com.typesafe.scalalogging.StrictLogging
 import com.ubirch.notary.Boot
 import com.ubirch.notary.util.RouteConstants
 import com.ubirch.notary.core.bitcoin.BitcoinWalletUtil
@@ -11,7 +11,7 @@ import spray.routing.{Directives, Route}
   * author: cvandrei
   * since: 2016-06-09
   */
-class TransactionRoute extends Directives with UriPathDirective with LazyLogging {
+class TransactionRoute extends Directives with UriPathDirective with StrictLogging {
 
   import com.ubirch.notary.json.Json4sSupport._
 
