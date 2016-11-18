@@ -24,7 +24,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "core" % "0.2.5"
+  "com.ubirch.notary" %% "core" % "0.3.0-SNAPSHOT"
 )
 ```
 
@@ -33,7 +33,7 @@ libraryDependencies ++= Seq(
 ```scala
 resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "server" % "0.2.5"
+  "com.ubirch.notary" %% "server" % "0.3.0-SNAPSHOT"
 )
 ```
 
@@ -47,7 +47,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "client" % "0.2.5"
+  "com.ubirch.notary" %% "client" % "0.3.0-SNAPSHOT"
 )
 ```
 
