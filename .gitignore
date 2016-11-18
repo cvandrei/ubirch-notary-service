@@ -18,3 +18,12 @@ project/plugins/project/
 
 .idea
 /Dockerfile
+
+# Bitcoin wallets
+/wallet-org.bitcoin.test.*
+
+# Tor related files
+/cached-microdescs.new
+/consensus-microdesc
+/state
+/certificates
