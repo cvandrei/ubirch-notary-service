@@ -1,6 +1,6 @@
 package com.ubirch.notary.routes
 
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.Boot
 import com.ubirch.notary.util.RouteConstants
 import com.ubirch.notary.core.bitcoin.BitcoinWalletUtil

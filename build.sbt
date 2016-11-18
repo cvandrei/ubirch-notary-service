@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.4",
+  version := "0.2.5",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -85,47 +85,46 @@ lazy val depServer = Seq(
   "io.spray" %% "spray-client" % sprayV,
   "org.json4s" %% "json4s-jackson" % "3.2.10",
 
-  // logging and config
+  // config
   "com.typesafe.akka" %% "akka-actor" % akkaV,
-  "ch.qos.logback" % "logback-classic" % "1.1.7",
-  "ch.qos.logback" % "logback-core" % "1.1.7",
-  "net.logstash.logback" % "logstash-logback-encoder" % "4.3",
-  "org.slf4j" % "slf4j-api" % "1.7.12",
-  typesafeLogging,
 
   // misc
   "joda-time" % "joda-time" % "2.9.3"
 
-)
+) ++ scalaLogging
 
 lazy val depCore = Seq(
   bitcoinj,
   ubirchUtilCrypto,
-  ubirchUtilConfig,
-  typesafeLogging
-)
+  ubirchUtilConfig
+) ++ scalaLogging
 
 lazy val depClientRest = {
   Seq(
     beeClient,
     ubirchUtilConfig,
-    typesafeLogging,
     ubirchUtilCrypto % "test",
     scalaTest % "test",
     json4sNative,
     ubirchUtilJsonAutoConvert
-  )
+  ) ++ scalaLogging
 }
 
 /*
  * DEPENDENCIES
  ********************************************************/
 
+lazy val scalaLogging = Seq(
+  "org.slf4j" % "slf4j-api" % "1.7.21",
+  "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2" exclude("org.slf4j", "slf4j-api"),
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" exclude("org.slf4j", "slf4j-api"),
+  "ch.qos.logback" % "logback-core" % "1.1.7",
+  "ch.qos.logback" % "logback-classic" % "1.1.7"
+)
+
 lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.3" % "compile"
 
 lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
-
-lazy val typesafeLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
 
 lazy val json4sNative = "org.json4s" %% "json4s-native" % json4sV
 lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV

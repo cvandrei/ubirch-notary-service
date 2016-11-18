@@ -1,7 +1,7 @@
 package com.ubirch.notary.core.routes
 
 import com.typesafe.config.ConfigException.Missing
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.core.config.AppConfig
 import com.ubirch.notary.json.Notarize
 import com.ubirch.util.crypto.hash.HashUtil

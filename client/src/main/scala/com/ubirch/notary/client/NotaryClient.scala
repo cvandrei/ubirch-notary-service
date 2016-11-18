@@ -2,7 +2,7 @@ package com.ubirch.notary.client
 
 import java.net.URL
 
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.client.config.ClientConfig
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
 import com.ubirch.util.json.MyJsonProtocol

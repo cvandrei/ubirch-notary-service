@@ -9,39 +9,47 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 
 ### `model`
 
-    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
-    libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "model" % "0.2.4"
-    )
+```scala
+resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+libraryDependencies ++= Seq(
+  "com.ubirch.notary" %% "model" % "0.2.5"
+)
+```
 
 ### `core`
 
-    resolvers ++= Seq(
-      Resolver.sonatypeRepo("snapshots"),
-      "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
-    )
-    libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "core" % "0.2.4"
-    )
+```scala
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("snapshots"),
+  "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
+)
+libraryDependencies ++= Seq(
+  "com.ubirch.notary" %% "core" % "0.2.5"
+)
+```
 
 ### `server`
 
-    resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
-    libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "server" % "0.2.4"
-    )
+```scala
+resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+libraryDependencies ++= Seq(
+  "com.ubirch.notary" %% "server" % "0.2.5"
+)
+```
 
 ### `client`
 
-    resolvers ++= Seq(
-      Resolver.sonatypeRepo("snapshots"),
-      Resolver.bintrayRepo("hseeberger", "maven"), // Seeberger Json
-      Resolver.bintrayRepo("rick-beton", "maven"), // BeeClient
-      "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
-    )
-    libraryDependencies ++= Seq(
-      "com.ubirch.notary" %% "client" % "0.2.4"
-    )
+```scala
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("snapshots"),
+  Resolver.bintrayRepo("hseeberger", "maven"), // Seeberger Json
+  Resolver.bintrayRepo("rick-beton", "maven"), // BeeClient
+  "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
+)
+libraryDependencies ++= Seq(
+  "com.ubirch.notary" %% "client" % "0.2.5"
+)
+```
 
 You may configure which NotaryService the client calls by adding the test server for example to your config:
 
@@ -52,6 +60,21 @@ You may configure which NotaryService the client calls by adding the test server
     }
 
 ## Release History
+
+### 0.2.5 (2016-11-18)
+
+- changed log imports to: `com.typesafe.scalalogging.slf4j.StrictLogging`
+- update logging dependencies to our current standard set:
+  
+```scala
+lazy val scalaLogging = Seq(
+  "org.slf4j" % "slf4j-api" % "1.7.21",
+  "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2" exclude("org.slf4j", "slf4j-api"),
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" exclude("org.slf4j", "slf4j-api"),
+  "ch.qos.logback" % "logback-core" % "1.1.7",
+  "ch.qos.logback" % "logback-classic" % "1.1.7"
+)
+```
 
 ### 0.2.4 (2016-11-14)
 
@@ -73,7 +96,9 @@ You may configure which NotaryService the client calls by adding the test server
 This service can be run in a Docker container. Running the following shell script will generate a Dockerfile in the
 project's root folder.
 
-    ./generate-dockerfile.sh
+```
+./generate-dockerfile.sh
+```
 
 ## Links
 

@@ -4,7 +4,7 @@ import java.io.File
 
 import com.google.common.util.concurrent.Service
 import com.typesafe.config.ConfigException.Missing
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 
 import com.ubirch.notary.core.config.AppConfig
 

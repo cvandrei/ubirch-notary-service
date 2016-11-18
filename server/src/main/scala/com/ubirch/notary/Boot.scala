@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit
 import akka.actor.{ActorSystem, Props}
 import akka.io.IO
 import akka.util.Timeout
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.core.bitcoin.BitcoinConnection
 import com.ubirch.notary.core.config.AppConfig
 import com.ubirch.notary.service.NotaryServiceActor
