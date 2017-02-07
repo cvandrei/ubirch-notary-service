@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigException.Missing
 import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.core.config.AppConfig
 import com.ubirch.notary.json.Notarize
-import com.ubirch.util.crypto.hash.HashUtil
+import com.ubirch.crypto.hash.HashUtil
 import org.bitcoinj.core.{Address, Coin, InsufficientMoneyException, NetworkParameters, Transaction}
 import org.bitcoinj.script.ScriptBuilder
 import org.bitcoinj.wallet.{SendRequest, Wallet}

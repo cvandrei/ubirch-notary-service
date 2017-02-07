@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.5",
+  version := "0.2.6",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -72,7 +72,7 @@ lazy val client = project
 
 val akkaV = "2.3.9"
 val sprayV = "1.3.3"
-val json4sV = "3.4.0"
+val json4sV = "3.4.2"
 val scalaTestV = "3.0.0"
 
 lazy val depServer = Seq(
@@ -131,8 +131,8 @@ lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
 lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
 lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1"
-lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.2"
-lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.1"
+lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.3.3"
+lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.3.2"
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
 

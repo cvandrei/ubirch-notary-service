@@ -10,9 +10,9 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 ### `model`
 
 ```scala
-resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "model" % "0.3.0-SNAPSHOT"
+  "com.ubirch.notary" %% "model" % "0.2.6"
 )
 ```
 
@@ -20,20 +20,20 @@ libraryDependencies ++= Seq(
 
 ```scala
 resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots"),
+  Resolver.sonatypeRepo("releases"),
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "core" % "0.3.0-SNAPSHOT"
+  "com.ubirch.notary" %% "core" % "0.2.6"
 )
 ```
 
 ### `server`
 
 ```scala
-resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"))
+resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "server" % "0.3.0-SNAPSHOT"
+  "com.ubirch.notary" %% "server" % "0.2.6"
 )
 ```
 
@@ -41,13 +41,13 @@ libraryDependencies ++= Seq(
 
 ```scala
 resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots"),
+  Resolver.sonatypeRepo("releases"),
   Resolver.bintrayRepo("hseeberger", "maven"), // Seeberger Json
   Resolver.bintrayRepo("rick-beton", "maven"), // BeeClient
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "client" % "0.3.0-SNAPSHOT"
+  "com.ubirch.notary" %% "client" % "0.2.6"
 )
 ```
 
@@ -60,6 +60,12 @@ You may configure which NotaryService the client calls by adding the test server
     }
 
 ## Release History
+
+### 0.2.6 (2017-02-07)
+
+* update dependency: "com.ubirch.util:json-auto-convert" from 0.1 to 0.3.2
+* update json4s dependencies from 3.4.0 to 3.4.2
+* update dependency: "com.ubirch.util:crypto" from 0.2 to 0.3.3
 
 ### 0.2.5 (2016-11-18)
 

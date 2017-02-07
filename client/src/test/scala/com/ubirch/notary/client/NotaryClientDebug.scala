@@ -4,7 +4,7 @@ import java.net.URL
 
 import com.ubirch.util.json.MyJsonProtocol
 import com.ubirch.notary.json.{Notarize, NotarizeResponse}
-import com.ubirch.util.crypto.hash.HashUtil
+import com.ubirch.crypto.hash.HashUtil
 import org.json4s.native.JsonMethods._
 import org.scalatest.{FeatureSpec, Matchers}
 import uk.co.bigbeeconsultants.http.HttpClient
