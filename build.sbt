@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.6",
+  version := "0.2.7-SNAPSHOT",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -16,7 +16,10 @@ lazy val commonSettings = Seq(
     "https://github.com/ubirch/ubirch-notary-service"
   )),
 
-  resolvers += Resolver.sonatypeRepo("snapshots"),
+  resolvers ++= Seq(
+    Resolver.sonatypeRepo("releases"),
+    Resolver.sonatypeRepo("snapshots")
+  ),
 
   javaOptions in Test += testConfiguration
 
@@ -158,9 +161,9 @@ def generateDockerFile(file: File, nameString: String, versionString: String): S
 
   val contents =
     s"""FROM ubirch/java
-        |ADD "$path$jar" /app/$jar
-        |ENTRYPOINT ["java", "-jar", "/app/$jar"]
-        |""".stripMargin
+       |ADD "$path$jar" /app/$jar
+       |ENTRYPOINT ["java", "-jar", "/app/$jar"]
+       |""".stripMargin
   IO.write(file, contents)
   Seq(file)
 
