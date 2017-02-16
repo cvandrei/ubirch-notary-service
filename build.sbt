@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.2.7-SNAPSHOT",
+  version := "0.2.7",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -73,7 +73,7 @@ lazy val client = project
  * MODULE DEPENDENCIES
  ********************************************************/
 
-val akkaV = "2.3.9"
+val akkaV = "2.4.17"
 val sprayV = "1.3.3"
 val json4sV = "3.4.2"
 val scalaTestV = "3.0.0"
@@ -88,7 +88,6 @@ lazy val depServer = Seq(
   "io.spray" %% "spray-client" % sprayV,
   "org.json4s" %% "json4s-jackson" % "3.2.10",
 
-  // config
   "com.typesafe.akka" %% "akka-actor" % akkaV,
 
   // misc
