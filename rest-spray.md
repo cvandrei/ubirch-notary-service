@@ -94,6 +94,9 @@ To notarize a hex-encoded hash we may POST:
 }
 ```
 
+In both cases the response is the resulting transaction hash (txHash) in the Bitcoin blockchain.
+
+
 ## `curl` Calls {#curl}
 
 ### Wallet Information
