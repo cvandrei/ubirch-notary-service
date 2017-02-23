@@ -63,7 +63,7 @@ You may configure which NotaryService the client calls by adding the test server
 
 ### 0.2.8 (tbd)
 
-* tbd
+* update `scalatest` from 3.0.0 to 3.0.1
 
 ### 0.2.7 (2017-02-16)
 

@@ -76,7 +76,7 @@ lazy val client = project
 val akkaV = "2.4.17"
 val sprayV = "1.3.3"
 val json4sV = "3.4.2"
-val scalaTestV = "3.0.0"
+val scalaTestV = "3.0.1"
 
 lazy val depServer = Seq(
 
