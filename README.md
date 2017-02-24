@@ -3,7 +3,7 @@
 ## General Information
 
 This REST service allows us to notarize data using the Bitcoin Blockchain. The REST API is documented here: 
-[REST API with spray](./rest-spray.html).
+[REST API with spray](rest-spray.md).
 
 ## Scala Dependencies & Configs
 
