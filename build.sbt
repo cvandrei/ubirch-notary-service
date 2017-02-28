@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.3.1-SNAPSHOT",
+  version := "0.3.1",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -119,7 +119,6 @@ lazy val depClientRest = {
 lazy val scalaLogging = Seq(
   "org.slf4j" % "slf4j-api" % "1.7.21",
   "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2" exclude("org.slf4j", "slf4j-api"),
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" exclude("org.slf4j", "slf4j-api"),
   "ch.qos.logback" % "logback-core" % "1.1.7",
   "ch.qos.logback" % "logback-classic" % "1.1.7"
 )
