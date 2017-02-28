@@ -10,4 +10,6 @@ case class Notarize(data: String,
                     publicKey: Option[String] = None
                    )
 
-case class NotarizeResponse(hash: String)
+case class NotarizeResponse(hash: String,
+                            txHashLink: String
+                           )

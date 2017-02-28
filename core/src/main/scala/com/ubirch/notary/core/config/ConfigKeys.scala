@@ -6,13 +6,16 @@ package com.ubirch.notary.core.config
   */
 object ConfigKeys {
 
-  final val INTERFACE = "notaryService.interface"
-  final val PORT = "notaryService.port"
+  private val prefix = "notaryService"
+  final val INTERFACE = s"$prefix.interface"
+  final val PORT = s"$prefix.port"
 
-  final val BITCOIN_NETWORK = "bitcoin.network"
-  final val BITCOIN_WALLET_DIRECTORY = "bitcoin.wallet.directory"
-  final val BITCOIN_WALLET_PREFIX = "bitcoin.wallet.prefix"
-  final val BITCOIN_FEE_PER_KB = "bitcoin.feePerKb"
-  final val BITCOIN_TOR_ENABLED = "bitcoin.tor.enabled"
+  private val bitcoinPrefix = "bitcoin"
+  final val BITCOIN_EXPLORER_LINK = s"$bitcoinPrefix.chainExplorerLink"
+  final val BITCOIN_NETWORK = s"$bitcoinPrefix.network"
+  final val BITCOIN_WALLET_DIRECTORY = s"$bitcoinPrefix.wallet.directory"
+  final val BITCOIN_WALLET_PREFIX = s"$bitcoinPrefix.wallet.prefix"
+  final val BITCOIN_FEE_PER_KB = s"$bitcoinPrefix.feePerKb"
+  final val BITCOIN_TOR_ENABLED = s"$bitcoinPrefix.tor.enabled"
 
 }

@@ -8,9 +8,19 @@ import com.ubirch.util.config.ConfigBase
   */
 object AppConfig extends ConfigBase {
 
+  /*
+   * Server
+   ****************************************************/
+
   def serverInterface: String = config.getString(ConfigKeys.INTERFACE)
 
   def serverPort: Int = config.getInt(ConfigKeys.PORT)
+
+  /*
+   * Bitcoin
+   ****************************************************/
+
+  def bitcoinChainExplorerLink: String = config.getString(ConfigKeys.BITCOIN_EXPLORER_LINK)
 
   def bitcoinNetwork: String = config.getString(ConfigKeys.BITCOIN_NETWORK)
 
