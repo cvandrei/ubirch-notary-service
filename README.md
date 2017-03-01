@@ -12,7 +12,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 ```scala
 resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "model" % "0.3.1"
+  "com.ubirch.notary" %% "model" % "0.3.2"
 )
 ```
 
@@ -24,7 +24,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "core" % "0.3.1"
+  "com.ubirch.notary" %% "core" % "0.3.2"
 )
 ```
 
@@ -33,7 +33,7 @@ libraryDependencies ++= Seq(
 ```scala
 resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "server" % "0.3.1"
+  "com.ubirch.notary" %% "server" % "0.3.2"
 )
 ```
 
@@ -47,7 +47,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "client" % "0.3.1"
+  "com.ubirch.notary" %% "client" % "0.3.2"
 )
 ```
 
@@ -60,6 +60,10 @@ You may configure which NotaryService the client calls by adding the test server
     }
 
 ## Release History
+
+### 0.3.2 (2017-03-01)
+
+* fixed config (dev uses `application.conf` and anything not defined in `application.base.conf`) was not found on prod
 
 ### 0.3.1 (2017-02-28)
 
