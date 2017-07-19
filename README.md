@@ -61,6 +61,10 @@ You may configure which NotaryService the client calls by adding the test server
 
 ## Release History
 
+### 0.3.3 (tbd)
+
+* update docker related code
+
 ### 0.3.1 (2017-02-28)
 
 * fixed assembly bug by removing a conflicting logging dependency
@@ -111,14 +115,9 @@ lazy val scalaLogging = Seq(
   * added Tor Support
   * refactored module structure to conform with our coding conventions
 
-## Docker
+## Create Docker Image
 
-This service can be run in a Docker container. Running the following shell script will generate a Dockerfile in the
-project's root folder.
-
-```
-./generate-dockerfile.sh
-```
+    ./goBuild assembly && ./goBuild containerbuild
 
 ## Links
 
