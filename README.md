@@ -12,7 +12,7 @@ This REST service allows us to notarize data using the Bitcoin Blockchain. The R
 ```scala
 resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "model" % "0.3.2"
+  "com.ubirch.notary" %% "model" % "0.3.3"
 )
 ```
 
@@ -24,7 +24,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "core" % "0.3.2"
+  "com.ubirch.notary" %% "core" % "0.3.3"
 )
 ```
 
@@ -33,7 +33,7 @@ libraryDependencies ++= Seq(
 ```scala
 resolvers ++= Seq(Resolver.sonatypeRepo("releases"))
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "server" % "0.3.2"
+  "com.ubirch.notary" %% "server" % "0.3.3"
 )
 ```
 
@@ -47,7 +47,7 @@ resolvers ++= Seq(
   "RoundEights" at "http://maven.spikemark.net/roundeights" // Hasher
 )
 libraryDependencies ++= Seq(
-  "com.ubirch.notary" %% "client" % "0.3.2"
+  "com.ubirch.notary" %% "client" % "0.3.3"
 )
 ```
 
@@ -61,9 +61,9 @@ You may configure which NotaryService the client calls by adding the test server
 
 ## Release History
 
-### 0.3.2 (2017-03-01)
+### 0.3.3 (2017-07-19)
 
-* fixed config (dev uses `application.conf` and anything not defined in `application.base.conf`) was not found on prod
+* update docker related code
 
 ### 0.3.1 (2017-02-28)
 
@@ -115,14 +115,9 @@ lazy val scalaLogging = Seq(
   * added Tor Support
   * refactored module structure to conform with our coding conventions
 
-## Docker
+## Create Docker Image
 
-This service can be run in a Docker container. Running the following shell script will generate a Dockerfile in the
-project's root folder.
-
-```
-./generate-dockerfile.sh
-```
+    ./goBuild assembly && ./goBuild containerbuild
 
 ## Links
 

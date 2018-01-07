@@ -17,7 +17,6 @@ project/plugins/project/
 .worksheet
 
 .idea
-/Dockerfile
 
 # Bitcoin wallets
 /wallet-org.bitcoin.test.*
@@ -27,3 +26,7 @@ project/plugins/project/
 /consensus-microdesc
 /state
 /certificates
+
+# Docker related files
+Dockerfile
+Dockerfile.input

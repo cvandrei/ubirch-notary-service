@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.3.2",
+  version := "0.3.3",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -40,7 +40,7 @@ lazy val server = project
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
     libraryDependencies ++= depServer,
     resourceGenerators in Compile += Def.task {
-      generateDockerFile(baseDirectory.value / ".." / "Dockerfile", name.value, version.value)
+      generateDockerFile(baseDirectory.value / ".." / "Dockerfile.input", (assemblyOutputPath in assembly).value)
     }.taskValue
   )
 
@@ -149,20 +149,11 @@ lazy val resolverBeeClient = Resolver.bintrayRepo("rick-beton", "maven")
  * MISC
  ********************************************************/
 
-def generateDockerFile(file: File, nameString: String, versionString: String): Seq[File] = {
-
-  //  val jar = "notaryService-%s-assembly-%s.jar".format(nameString, versionString)
-  //assembleArtifact.
-  val path = "./server/target/scala-2.11/"
-  val jar = "server-assembly-0.2.4.jar"
-  //  val jar = assembly
-
+def generateDockerFile(file: File, jarFile: sbt.File): Seq[File] = {
   val contents =
-    s"""FROM ubirch/java
-       |ADD "$path$jar" /app/$jar
-       |ENTRYPOINT ["java", "-jar", "/app/$jar"]
+    s"""SOURCE=server/target/scala-2.11/${jarFile.getName}
+       |TARGET=${jarFile.getName}
        |""".stripMargin
   IO.write(file, contents)
   Seq(file)
-
 }
