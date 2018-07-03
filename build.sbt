@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   scalacOptions ++= Seq("-feature"),
 
-  version := "0.3.4-SNAPSHOT",
+  version := "0.3.4",
 
   organization := "com.ubirch.notary",
   homepage := Some(url("http://ubirch.com")),
@@ -35,6 +35,7 @@ lazy val notaryService = (project in file("."))
 
 lazy val server = project
   .settings(commonSettings: _*)
+  .settings(mergeStrategy: _*)
   .dependsOn(model, core)
   .settings(
     mainClass in assembly := Some("com.ubirch.notary.Boot"),
@@ -123,7 +124,7 @@ lazy val scalaLogging = Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7"
 )
 
-lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.5" % "compile"
+lazy val bitcoinj = "org.bitcoinj" % "bitcoinj-core" % "0.14.7" % "compile"
 
 lazy val beeClient = "uk.co.bigbeeconsultants" %% "bee-client" % "0.29.1"
 
@@ -131,8 +132,8 @@ lazy val json4sNative = "org.json4s" %% "json4s-native" % json4sV
 lazy val json4sExt = "org.json4s" %% "json4s-ext" % json4sV
 lazy val json4sJackson = "org.json4s" %% "json4s-jackson" % json4sV
 
-lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.1"
-lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.3.3"
+lazy val ubirchUtilConfig = "com.ubirch.util" %% "config" % "0.2.0"
+lazy val ubirchUtilCrypto = "com.ubirch.util" %% "crypto" % "0.4.7"
 lazy val ubirchUtilJsonAutoConvert = "com.ubirch.util" %% "json-auto-convert" % "0.3.2"
 
 lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
@@ -144,6 +145,21 @@ lazy val scalaTest = "org.scalatest" %% "scalatest" % scalaTestV
 lazy val resolverSeebergerJson = Resolver.bintrayRepo("hseeberger", "maven")
 lazy val resolverHasher = "RoundEights" at "http://maven.spikemark.net/roundeights"
 lazy val resolverBeeClient = Resolver.bintrayRepo("rick-beton", "maven")
+
+lazy val mergeStrategy = Seq(
+  assemblyMergeStrategy in assembly := {
+    case PathList("org", "joda", "time", xs@_*) => MergeStrategy.first
+    case m if m.toLowerCase.endsWith("manifest.mf") => MergeStrategy.discard
+    case m if m.toLowerCase.matches("meta-inf.*\\.sf$") => MergeStrategy.discard
+    case m if m.toLowerCase.endsWith("application.conf") => MergeStrategy.concat
+    case m if m.toLowerCase.endsWith("application.dev.conf") => MergeStrategy.first
+    case m if m.toLowerCase.endsWith("application.base.conf") => MergeStrategy.first
+    case m if m.toLowerCase.endsWith("logback.xml") => MergeStrategy.first
+    case m if m.toLowerCase.endsWith("logback-test.xml") => MergeStrategy.discard
+    case "reference.conf" => MergeStrategy.concat
+    case _ => MergeStrategy.first
+  }
+)
 
 /*
  * MISC
