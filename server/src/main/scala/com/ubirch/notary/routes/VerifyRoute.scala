@@ -4,12 +4,12 @@ package com.ubirch.notary.routes
 import akka.actor.ActorSystem
 import com.typesafe.scalalogging.slf4j.StrictLogging
 import com.ubirch.notary.directives.UriPathDirective
-import com.ubirch.notary.json.{Json4sSupport, Verification}
+import com.ubirch.notary.json.Verification
 import com.ubirch.notary.util.RouteConstants
-import spray.http.{HttpRequest, HttpResponse}
-import spray.routing.{Directives, Route}
 import spray.client.pipelining._
+import spray.http.HttpRequest
 import spray.http.StatusCodes._
+import spray.routing.{Directives, Route}
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.util.{Failure, Success}
@@ -48,9 +48,13 @@ class VerifyRoute extends Directives with UriPathDirective with StrictLogging {
       onComplete(responseFuture) {
         case Success(response) =>
           logger.debug(s"confirmed: ${response.confirmed} (${response.confirmations})")
-          val output = response.outputs.find(o => o.data_hex.isDefined).get.data_hex.getOrElse("--UNDEFINED--")
+          val opReturns = response.outputs.find(o => o.data_hex.isDefined)
+          val output = if (opReturns.isDefined)
+            opReturns.get.data_hex.getOrElse("--UNDEFINED--")
+          else
+            "--UNDEFINED--"
           logger.debug(s"data     : $output")
-          if(verificationReq.data == output) {
+          if (verificationReq.data == output) {
             complete(OK -> Map("confirmed" -> response.confirmed, "confirmations" -> response.confirmations))
           } else {
             complete(BadRequest -> Map("error" -> s"data mismatch: $output}"))
