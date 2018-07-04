@@ -24,21 +24,21 @@ object Boot extends App with StrictLogging {
   logger.info("notaryService started")
 
   Runtime.getRuntime.addShutdownHook(new Thread() {
-    override def run() = {
+    override def run(): Unit = {
       bitcoinConnection.stop()
     }
   })
 
   def start(): ActorSystem = {
 
-    //bitcoinConnection.startBitcoin
+    bitcoinConnection.startBitcoin
 
-    implicit val system = ActorSystem("on-spray-can")
+    implicit val system: ActorSystem = ActorSystem("on-spray-can")
     val service = system.actorOf(Props[NotaryServiceActor], "ubirch-notary")
 
     val interface = AppConfig.serverInterface
     val port = AppConfig.serverPort
-    implicit val timeout = Timeout(5, TimeUnit.SECONDS)
+    implicit val timeout: Timeout = Timeout(5, TimeUnit.SECONDS)
     IO(Http) ! Http.Bind(service, interface = interface, port = port)
 
     system
