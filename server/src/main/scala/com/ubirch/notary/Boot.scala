@@ -31,7 +31,7 @@ object Boot extends App with StrictLogging {
 
   def start(): ActorSystem = {
 
-    bitcoinConnection.startBitcoin
+    //bitcoinConnection.startBitcoin
 
     implicit val system = ActorSystem("on-spray-can")
     val service = system.actorOf(Props[NotaryServiceActor], "ubirch-notary")

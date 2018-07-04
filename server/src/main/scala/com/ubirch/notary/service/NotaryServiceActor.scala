@@ -2,7 +2,7 @@ package com.ubirch.notary.service
 
 import akka.actor.Actor
 import com.ubirch.notary.util.RouteConstants
-import com.ubirch.notary.routes.{WelcomeRoute, TransactionRoute, NotarizeRoute, WalletInfoRoute}
+import com.ubirch.notary.routes._
 import spray.routing._
 
 /**
@@ -19,6 +19,7 @@ class NotaryServiceActor extends Actor with NotaryService {
 trait NotaryService extends HttpService {
 
   val notarize = new NotarizeRoute
+  val verify = new VerifyRoute
   val walletInfo = new WalletInfoRoute
   val transaction = new TransactionRoute
   val welcome = new WelcomeRoute
@@ -27,7 +28,7 @@ trait NotaryService extends HttpService {
 
     pathPrefix(RouteConstants.v1) {
       pathPrefix(RouteConstants.notaryService) {
-        notarize.routes ~ walletInfo.routes ~ transaction.routes
+        notarize.routes ~ verify.routes ~ walletInfo.routes ~ transaction.routes
       }
     } ~ pathSingleSlash {
       welcome.routes

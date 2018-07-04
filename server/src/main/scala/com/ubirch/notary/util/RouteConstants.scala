@@ -15,6 +15,9 @@ object RouteConstants {
   final val pathNotarize = "notarize"
   final val urlNotarize = s"$urlNotaryService/$pathNotarize" // /v1/notaryService/notarize
 
+  final val pathVerify = "verify"
+  final val urlVerify = s"$urlNotaryService/$pathVerify" // /v1/notaryService/verify
+
   final val pathTransactions = "transactions"
   final val urlTransactions = s"$urlNotaryService/$pathTransactions" // /v1/notaryService/transactions
 
